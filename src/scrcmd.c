@@ -1885,7 +1885,7 @@ bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
 
 bool8 ScrCmd_doharrybattle(struct ScriptContext *ctx)
 {
-
+    //as a test here is a check
 }
 
 bool8 ScrCmd_pokemart(struct ScriptContext *ctx)

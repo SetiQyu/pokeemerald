@@ -272,6 +272,86 @@ PlayersHouse_2F_EventScript_GameCube::
 	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
 	end
 
+PlayersHouse_2F_EventScript_BeldumPokeball::
+	lockall
+	msgbox MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_LeaveBeldum
+	goto MossdeepCity_StevensHouse_EventScript_GiveBeldum
+	end
+
+PlayersHouse_2F_EventScript_LeaveBeldum::
+	msgbox MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas, MSGBOX_DEFAULT
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_GiveBeldum::
+	setvar VAR_TEMP_1, SPECIES_BELDUM
+	givemon SPECIES_BELDUM, 5
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, MossdeepCity_StevensHouse_EventScript_SendBeldumParty
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, MossdeepCity_StevensHouse_EventScript_SendBeldumPC
+	goto Common_EventScript_NoMoreRoomForPokemon
+	end
+
+PlayersHouse_2F_EventScript_SendBeldumParty::
+	call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+	end
+
+PlayersHouse_2F_EventScript_SendBeldumPC::
+	call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
+	call Common_EventScript_NameReceivedBoxMon
+	goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
+	end
+
+PlayersHouse_2F_EventScript_BeldumTransferredToPC::
+	call Common_EventScript_TransferredToPC
+	goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+	end
+
+PlayersHouse_2F_EventScript_ReceivedBeldumFanfare::
+	bufferspeciesname STR_VAR_2, SPECIES_BELDUM
+	removeobject LOCALID_BELDUM_BALL
+	playfanfare MUS_OBTAIN_ITEM
+	message MossdeepCity_StevensHouse_Text_ObtainedBeldum
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_BELDUM
+	return
+
+PlayersHouse_2F_EventScript_ReceivedBeldum::
+	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
+	setflag FLAG_RECEIVED_BELDUM
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_HarryEncounter::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_MEW, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setwildbattle SPECIES_MEW, 5
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, AugustsHus_EventScript_DefeatedHarry
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, AugustsHus_EventScript_RanFromHarry
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, AugustsHus_EventScript_RanFromHarry
+	setflag FLAG_UNUSED_0x068
+	release
+	end
+
+
+
+
 PlayersHouse_2F_Text_ClockIsStopped:
 	.string "The clock is stopped…\p"
 	.string "Better set it and start it!$"

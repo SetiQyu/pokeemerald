@@ -480,6 +480,13 @@ bool8 TryRunFromBattle(u8 battler)
     return effect;
 }
 
+void HandleAction_HarryMove(void)
+{
+    gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+    gCurrentTurnActionNumber = gBattlersCount;
+    gBattleOutcome = B_OUTCOME_MON_FLED;
+}
+
 void HandleAction_Run(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];

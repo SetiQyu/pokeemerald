@@ -1,0 +1,60 @@
+GetPokemonSpriteToDisplay function in pokedex.c
+
+battle_setup.c StartRegiBattle
+
+main.h has gMain and Main
+
+CB2_EndSafariBattle(void) i safari_zone.c
+
+BATTLE_TYPE_SAFARI sökning i Clion ger mycket intressanta grejor
+
+battle_util.c verkar ha intressanta funktioner för battles (eg HandleFaintedMonActions)
+den har också extern const gBattlescriptsForSafariActions[]
+
+battle_interface.c battle_gfx_sfx_util.c intressant
+
+gBattleTypeFlags intressant
+
+battle_scripts_2.s intressant
+
+battle_main
+
+battle_scripts_2.s och battle_util.c har nog allt
+
+battle.h Window Ids for sStandardBattleWindowTemplates / sBattleArenaWindowTemplates
+
+battle_controller_player.c
+static void PlayerHandleChooseAction(void)
+
+battle_bg.c
+
+battle_controller_safari.c är npg nyckeln
+
+-----STRUKTUR FÖR BATTLE------
+
+battle_controller_player.c har HandleInputChooseAction(void) där ens battle choice väljs.
+BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_USE_MOVE, 0); körs om FIGHT väljs.
+
+Det verkar som det leder till battle_main.c static void (* const sTurnActionsFuncsTable[])(void) =
+{
+    [B_ACTION_USE_MOVE]               = HandleAction_UseMove,
+
+Det verkar leda till battle_util.c med en funktion HandleAction_UseMove (jag har lagt till HandleAction_HarryMove)
+
+dowildbattle i mapscripts är starten av encounters, ScrCmd_dowildbattle(struct ScriptContext *ctx) är i scrcmd.c
+
+
+
+
+
+
+Yeah they're just regular functions that take no arguments. Write your function, put it in this table: https://github.com/pret/pokeemerald/blob/master/data/script_cmd_table.inc and then write a macro for it in asm/macros/event.inc. The first .byte of the macro is the index into that table
+Seti — Today at 23:09
+ah ok! thanks!
+GriffinR — Today at 23:10
+You can take a look at the existing functions in scrcmd.c to see how they read additional script data to take arguments indirectly
+Also if it's something you're only going to use once or twice, you should skip all of that. Just write your function and do callnative YourFunctionName in a script
+
+does anyone know how the games map scripts work btw? They sure dont look like C code at least 
+GriffinR — 22/11/2022 00:38
+They're data hidden away by assembly macros. They're interpreted by the C code in script.c to call functions in scrcmd.c

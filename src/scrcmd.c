@@ -1883,6 +1883,11 @@ bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
     return TRUE;
 }
 
+bool8 ScrCmd_doharrybattle(struct ScriptContext *ctx)
+{
+
+}
+
 bool8 ScrCmd_pokemart(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);

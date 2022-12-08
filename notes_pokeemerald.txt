@@ -43,6 +43,7 @@ Det verkar leda till battle_util.c med en funktion HandleAction_UseMove (jag har
 
 dowildbattle i mapscripts är starten av encounters, ScrCmd_dowildbattle(struct ScriptContext *ctx) är i scrcmd.c
 
+battle_setup.c har DoHarryBattle grej look at it
 
 
 

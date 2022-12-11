@@ -3386,7 +3386,7 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
 
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {
-        if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI || (gBattleTypeFlags & FLAG_UNUSED_0x88E))
+        if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI || gBattleTypeFlags & BATTLE_TYPE_HARRY)
             && GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         {
             ptr = (u8 *)&gBattleMons[gActiveBattler];

@@ -83,7 +83,7 @@ void HandleAction_UseMove(void)
 
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
 
-    if (GetHarryBattleFlag() == TRUE)   //ska ju egentligen absolut inte va här, tanka hela prestandan för en grej...
+    if (gBattleTypeFlags & BATTLE_TYPE_HARRY)   //ska ju egentligen absolut inte va här, tanka hela prestandan för en grej...
     {
         HandleAction_HarryMove();
     }

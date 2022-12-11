@@ -93,6 +93,7 @@ static const u8 *GetTrainerCantBattleSpeech(void);
 bool32 GetHarryBattleFlag(void);
 void SetHarryBattleFlag(void);
 void ResetHarryBattleFlag(void);
+static void DoHarryBattle(void);
 
 
 EWRAM_DATA static u16 sTrainerBattleMode = 0;
@@ -469,7 +470,7 @@ static void DoHarryBattle(void)
     FreezeObjectEvents();
     StopPlayerAvatar();
     gMain.savedCallback = CB2_EndScriptedWildBattle; // kanske ha CB2_EndWildBattle
-    gBattleTypeFlags = FLAG_UNUSED_0x88E;  //kanske ska göra egen flagga här för harry battle
+    gBattleTypeFlags = BATTLE_TYPE_HARRY;  //kanske ska göra egen flagga här för harry battle
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }
 
@@ -651,11 +652,6 @@ static void CB2_EndScriptedWildBattle(void)
 {
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
-
-    if (GetHarryBattleFlag() == TRUE)
-    {
-        ResetHarryBattleFlag();
-    }
 
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {

@@ -48,6 +48,7 @@
 #define WEATHER_HAS_EFFECT2 ((!ABILITY_ON_FIELD2(ABILITY_CLOUD_NINE) && !ABILITY_ON_FIELD2(ABILITY_AIR_LOCK)))
 
 void HandleAction_UseMove(void);
+void HandleAction_HarryMove(void);
 void HandleAction_Switch(void);
 void HandleAction_UseItem(void);
 void HandleAction_Run(void);

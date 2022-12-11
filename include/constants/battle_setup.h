@@ -15,4 +15,9 @@
 #define TRAINER_BATTLE_SET_TRAINER_B                    11
 #define TRAINER_BATTLE_HILL                             12
 
+
+bool32 GetHarryBattleFlag(void);  //kan vara helt åt helvete at skriva det här
+void SetHarryBattleFlag(void);
+void ResetHarryBattleFlag(void);
+
 #endif // GUARD_CONSTANTS_BATTLE_SETUP_H

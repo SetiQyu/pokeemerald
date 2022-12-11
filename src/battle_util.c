@@ -3,6 +3,7 @@
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_pyramid.h"
+#include "battle_setup.h"   //kanske inte?
 #include "battle_util.h"
 #include "pokemon.h"
 #include "international_string_util.h"

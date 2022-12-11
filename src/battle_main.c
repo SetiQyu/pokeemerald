@@ -532,7 +532,7 @@ static void (* const sTurnActionsFuncsTable[])(void) =
     [B_ACTION_TRY_FINISH]             = HandleAction_TryFinish,
     [B_ACTION_FINISHED]               = HandleAction_ActionFinished,
     [B_ACTION_NOTHING_FAINTED]        = HandleAction_NothingIsFainted,
-    [B_ACTION_HARRY_FIGHT]            = HandleAction_HarryMove
+    //[B_ACTION_HARRY_FIGHT]            = HandleAction_HarryMove  maybe later
 };
 
 static void (* const sEndTurnFuncsTable[])(void) =

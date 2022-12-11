@@ -43,11 +43,39 @@ Det verkar leda till battle_util.c med en funktion HandleAction_UseMove (jag har
 
 dowildbattle i mapscripts är starten av encounters, ScrCmd_dowildbattle(struct ScriptContext *ctx) är i scrcmd.c
 
+
+i battle_setup.c, gMain.savedCallback = CB2_EndScriptedWildBattle;
+                      gBattleTypeFlags = 0;
+                      CreateBattleStartTask(GetWildBattleTransition(), 0); MÅSTE vara nyckeln, specifikt createbattlestarttask, CB2_InitBattle battle_main.c
+------------END BATTLE SEQUENCE-------
+dowildbattle, setwildbattle
+
 battle_setup.c har DoHarryBattle grej look at it
 
+i battle_setup.c, har gBattleTypeFlags en influens över hur battlen blir påverkad?
+
+battle_setup.c, CreateBattleStartTask() har u8 taskId = CreateTask(Task_BattleStart, 1); kan vara något
+
+kolla på battle_controller_safari.c, nyckeln till att göra egen battle instance
+
+i battle_controller_harry.c så har vi HandleInputChooseAction() som har PlayerBufferExecCompleted()
 
 
+#define FLAG_UNUSED_0x88E                           (SYSTEM_FLAGS + 0x2E) // Unused Flag will be used for HarryBattle
+(i flags.h)
 
+BattleSetup_StartScriptedWildBattle är nog vad jag ska använda o hämta flagga i
+
+CB2_HandleStartBattle där har vi den (battle_main.c)
+
+CB2_InitBattleInternal in battle_main.c
+
+    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
+    {
+        CreateNPCTrainerParty(&gEnemyParty[0], gTrainerBattleOpponent_A, TRUE);
+        if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
+            CreateNPCTrainerParty(&gEnemyParty[PARTY_SIZE / 2], gTrainerBattleOpponent_B, FALSE);
+        SetWildMonHeldItem();
 
 Yeah they're just regular functions that take no arguments. Write your function, put it in this table: https://github.com/pret/pokeemerald/blob/master/data/script_cmd_table.inc and then write a macro for it in asm/macros/event.inc. The first .byte of the macro is the index into that table
 Seti — Today at 23:09

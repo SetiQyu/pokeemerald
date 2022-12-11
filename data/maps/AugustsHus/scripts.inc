@@ -26,7 +26,7 @@ AugustsHus_EventScript_HarryEncounter::
 	waitmoncry
 	setwildbattle SPECIES_MEW, 5
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	dowildbattle
+	callnative doharrybattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, AugustsHus_EventScript_DefeatedHarry

@@ -90,6 +90,10 @@ static void RegisterTrainerInMatchCall(void);
 static void HandleRematchVarsOnBattleEnd(void);
 static const u8 *GetIntroSpeechOfApproachingTrainer(void);
 static const u8 *GetTrainerCantBattleSpeech(void);
+bool32 GetHarryBattleFlag(void);
+void SetHarryBattleFlag(void)
+void ResetHarryBattleFlag(void)
+
 
 EWRAM_DATA static u16 sTrainerBattleMode = 0;
 EWRAM_DATA u16 gTrainerBattleOpponent_A = 0;
@@ -393,6 +397,23 @@ void BattleSetup_StartWildBattle(void)
         DoStandardWildBattle();
 }
 
+
+
+bool32 GetHarryBattleFlag(void)
+{
+    return FlagGet(FLAG_UNUSED_0x88E);  //flag that is used to set harry battle
+}
+
+void SetHarryBattleFlag(void)
+{
+    FlagSet(FLAG_UNUSED_0x88E)
+}
+
+void ResetHarryBattleFlag(void)
+{
+    FlagClear(FLAG_UNUSED_0x88E)
+}
+
 void BattleSetup_StartBattlePikeWildBattle(void)
 {
     DoBattlePikeWildBattle();
@@ -440,6 +461,18 @@ static void DoSafariBattle(void)
     gBattleTypeFlags = BATTLE_TYPE_SAFARI;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }
+
+
+static void DoHarryBattle(void)
+{
+    LockPlayerFieldControls();
+    FreezeObjectEvents();
+    StopPlayerAvatar();
+    gMain.savedCallback = CB2_EndScriptedWildBattle; // kanske ha CB2_EndWildBattle
+    gBattleTypeFlags = FLAG_UNUSED_0x88E;  //kanske ska göra egen flagga här för harry battle
+    CreateBattleStartTask(GetWildBattleTransition(), 0);
+}
+
 
 static void DoBattlePikeWildBattle(void)
 {
@@ -618,6 +651,11 @@ static void CB2_EndScriptedWildBattle(void)
 {
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
+
+    if (GetHarryBattleFlag() == TRUE)
+    {
+        ResetHarryBattleFlag();
+    }
 
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {

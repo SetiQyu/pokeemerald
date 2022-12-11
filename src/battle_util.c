@@ -82,6 +82,11 @@ void HandleAction_UseMove(void)
 
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
 
+    if (GetHarryBattleFlag() == TRUE)   //ska ju egentligen absolut inte va här, tanka hela prestandan för en grej...
+    {
+        HandleAction_HarryMove();
+    }
+
     if (*(&gBattleStruct->absentBattlerFlags) & gBitTable[gBattlerAttacker])
     {
         gCurrentActionFuncId = B_ACTION_FINISHED;
@@ -483,6 +488,7 @@ bool8 TryRunFromBattle(u8 battler)
 void HandleAction_HarryMove(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+    PlaySE(SE_FLEE);  //kanske ska flytta ner
     gCurrentTurnActionNumber = gBattlersCount;
     gBattleOutcome = B_OUTCOME_MON_FLED;
 }

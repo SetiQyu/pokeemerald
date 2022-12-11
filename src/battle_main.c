@@ -532,6 +532,7 @@ static void (* const sTurnActionsFuncsTable[])(void) =
     [B_ACTION_TRY_FINISH]             = HandleAction_TryFinish,
     [B_ACTION_FINISHED]               = HandleAction_ActionFinished,
     [B_ACTION_NOTHING_FAINTED]        = HandleAction_NothingIsFainted,
+    [B_ACTION_HARRY_FIGHT]            = HandleAction_HarryMove
 };
 
 static void (* const sEndTurnFuncsTable[])(void) =
@@ -3385,7 +3386,7 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
 
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {
-        if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+        if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI || (gBattleTypeFlags & FLAG_UNUSED_0x88E))
             && GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         {
             ptr = (u8 *)&gBattleMons[gActiveBattler];
@@ -3700,7 +3701,7 @@ static void BattleIntroPrintPlayerSendsOut(void)
         else
             position = B_POSITION_PLAYER_LEFT;
 
-        if (!(gBattleTypeFlags & BATTLE_TYPE_SAFARI))
+        if (!(gBattleTypeFlags & BATTLE_TYPE_SAFARI))  //kanske ska lägga till harry flag här
             PrepareStringBattle(STRINGID_INTROSENDOUT, GetBattlerAtPosition(position));
 
         gBattleMainFunc = BattleIntroPlayer1SendsOutMonAnimation;
@@ -4719,7 +4720,7 @@ static void SetActionsAndBattlersTurnOrder(void)
     s32 turnOrderId = 0;
     s32 i, j;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+    if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)  //harry kanske
     {
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         {
@@ -5066,7 +5067,8 @@ static void HandleEndTurn_FinishBattle(void)
                                   | BATTLE_TYPE_SAFARI
                                   | BATTLE_TYPE_EREADER_TRAINER
                                   | BATTLE_TYPE_WALLY_TUTORIAL
-                                  | BATTLE_TYPE_FRONTIER)))
+                                  | BATTLE_TYPE_FRONTIER
+                                  | FLAG_UNUSED_0x88E)))
         {
             for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
             {
@@ -5094,7 +5096,8 @@ static void HandleEndTurn_FinishBattle(void)
                                   | BATTLE_TYPE_SAFARI
                                   | BATTLE_TYPE_FRONTIER
                                   | BATTLE_TYPE_EREADER_TRAINER
-                                  | BATTLE_TYPE_WALLY_TUTORIAL))
+                                  | BATTLE_TYPE_WALLY_TUTORIAL
+                                  | FLAG_UNUSED_0x88E))
             && gBattleResults.shinyWildMon)
         {
             TryPutBreakingNewsOnAir();

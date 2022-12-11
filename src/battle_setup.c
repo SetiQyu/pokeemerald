@@ -91,8 +91,8 @@ static void HandleRematchVarsOnBattleEnd(void);
 static const u8 *GetIntroSpeechOfApproachingTrainer(void);
 static const u8 *GetTrainerCantBattleSpeech(void);
 bool32 GetHarryBattleFlag(void);
-void SetHarryBattleFlag(void)
-void ResetHarryBattleFlag(void)
+void SetHarryBattleFlag(void);
+void ResetHarryBattleFlag(void);
 
 
 EWRAM_DATA static u16 sTrainerBattleMode = 0;

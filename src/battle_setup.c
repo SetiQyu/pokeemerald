@@ -406,12 +406,12 @@ bool32 GetHarryBattleFlag(void)
 
 void SetHarryBattleFlag(void)
 {
-    FlagSet(FLAG_UNUSED_0x88E)
+    FlagSet(FLAG_UNUSED_0x88E);
 }
 
 void ResetHarryBattleFlag(void)
 {
-    FlagClear(FLAG_UNUSED_0x88E)
+    FlagClear(FLAG_UNUSED_0x88E);
 }
 
 void BattleSetup_StartBattlePikeWildBattle(void)

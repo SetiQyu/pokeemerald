@@ -66,6 +66,6 @@ u16 CountBattledRematchTeams(u16 trainerId);
 bool32 GetHarryBattleFlag(void);  //kan vara helt åt helvete at skriva det här
 void SetHarryBattleFlag(void);
 void ResetHarryBattleFlag(void);
-static void DoHarryBattle(void);
+void DoHarryBattle(void);
 
 #endif // GUARD_BATTLE_SETUP_H

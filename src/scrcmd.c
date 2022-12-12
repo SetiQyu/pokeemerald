@@ -1883,7 +1883,7 @@ bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
     return TRUE;
 }
 
-bool8 ScrCmd_doharrybattle(struct ScriptContext *ctx)
+bool8 doharrybattle(struct ScriptContext *ctx)  //try to remove scrcmd
 {
     DoHarryBattle();
     ScriptContext_Stop();

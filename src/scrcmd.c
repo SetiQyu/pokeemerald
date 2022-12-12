@@ -1878,14 +1878,14 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
 
 bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
 {
-    DoHarryBattle();
+    BattleSetup_StartScriptedWildBattle();
     ScriptContext_Stop();
     return TRUE;
 }
 
 bool8 ScrCmd_doharrybattle(struct ScriptContext *ctx)
 {
-    BattleSetup_StartHarryBattle();
+    DoHarryBattle();
     ScriptContext_Stop();
     return TRUE;
 }

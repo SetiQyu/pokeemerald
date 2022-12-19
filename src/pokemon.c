@@ -1783,6 +1783,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_JIRACHI - 1]     = ANIM_SWING_CONVEX,
     [SPECIES_DEOXYS - 1]      = ANIM_H_PIVOT,
     [SPECIES_CHIMECHO - 1]    = ANIM_H_SLIDE_WOBBLE,
+    [SPECIES_HARRY - 1]     = ANIM_V_SHAKE,
 };
 
 static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =

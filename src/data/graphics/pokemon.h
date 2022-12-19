@@ -2712,6 +2712,13 @@ const u32 gMonShinyPalette_Chimecho[] = INCBIN_U32("graphics/pokemon/chimecho/sh
 const u8 gMonIcon_Chimecho[] = INCBIN_U8("graphics/pokemon/chimecho/icon.4bpp");
 const u8 gMonFootprint_Chimecho[] = INCBIN_U8("graphics/pokemon/chimecho/footprint.1bpp");
 
+const u32 gMonStillFrontPic_Harry[] = INCBIN_U32("graphics/pokemon/harry/front.4bpp.lz");
+const u32 gMonPalette_Harry[] = INCBIN_U32("graphics/pokemon/harry/normal.gbapal.lz");
+const u32 gMonBackPic_Harry[] = INCBIN_U32("graphics/pokemon/harry/back.4bpp.lz");
+const u32 gMonShinyPalette_Harry[] = INCBIN_U32("graphics/pokemon/harry/shiny.gbapal.lz");
+const u8 gMonIcon_Harry[] = INCBIN_U8("graphics/pokemon/harry/icon.4bpp");
+const u8 gMonFootprint_Harry[] = INCBIN_U8("graphics/pokemon/harry/footprint.1bpp");
+
 const u32 gMonStillFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/front.4bpp.lz");
 const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
 

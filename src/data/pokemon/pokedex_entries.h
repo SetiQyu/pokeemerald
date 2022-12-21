@@ -4643,4 +4643,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 290,
         .trainerOffset = 2,
     },
+
+    [NATIONAL_DEX_HARRY] =
+            {
+                    .categoryName = _("CAT"),
+                    .height = 7,
+                    .weight = 69,
+                    .description = gHarryPokedexText,
+                    .pokemonScale = 356,
+                    .pokemonOffset = 17,
+                    .trainerScale = 256,
+                    .trainerOffset = 0,
+            },
 };

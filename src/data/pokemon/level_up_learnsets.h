@@ -5615,3 +5615,11 @@ static const u16 sChimechoLevelUpLearnset[] = {
     LEVEL_UP_MOVE(46, MOVE_PSYCHIC),
     LEVEL_UP_END
 };
+
+static const u16 sHarryLevelUpLearnset[] = {
+        LEVEL_UP_MOVE( 1, MOVE_SKY_ATTACK),
+        LEVEL_UP_MOVE( 1, MOVE_EXTREME_SPEED),
+        LEVEL_UP_MOVE( 1, MOVE_SKY_UPPERCUT),
+        LEVEL_UP_MOVE( 1, MOVE_SLACK_OFF),
+        LEVEL_UP_END
+};
